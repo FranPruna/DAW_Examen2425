@@ -4,6 +4,7 @@ use App\Http\Controllers\CartaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PedidoController;
+use App\Models\Carta;
 use App\Models\User;
 
 Route::get('/', [LoginController::class, 'showLogin']);
@@ -26,3 +27,5 @@ Route::get('/users', function(){
 });
 
 Route::post('carrito', [PedidoController::class, 'anadirCarrito'])->name('carrito');
+
+Route::resource('cartas', CartaController::class);

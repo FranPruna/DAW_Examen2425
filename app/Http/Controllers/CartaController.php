@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartaController extends Controller
 {
@@ -22,7 +23,9 @@ class CartaController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->role == 'admin'){
+            return view('admin.cartas.formulario_cartas');
+        }
     }
 
     /**
@@ -30,7 +33,15 @@ class CartaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carta = new Carta();
+        $carta->nombre = $request->nombre;
+        $carta->tipo = $request->tipo;
+        $carta->rareza = $request->rareza;
+        $carta->precio = $request->precio;
+        $carta->stock = $request->stock;
+        $carta->save();
+        $cartas = Carta::all();
+        return view('admin.cartas.cartas',compact('cartas'));
     }
 
     /**

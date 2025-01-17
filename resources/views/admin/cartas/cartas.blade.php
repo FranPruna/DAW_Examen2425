@@ -14,14 +14,14 @@
                 <li><a href="">Cartas</a></li>
                 <li><a href="">Pedidos</a></li>
                 <li><a href="">Cerrar Sesión (Iván)</a></li>
-         
+
             </ul>
         </nav>
     </header>
     <main class="cartas">
         <div class="container">
             <h2>Gestión de Cartas</h2>
-            <a href="" class="btn">Añadir Nueva Carta</a>
+            <a href="{{Route('cartas.create')}}" class="btn">Añadir Nueva Carta</a>
             <table>
                 <thead>
                     <tr>
@@ -35,28 +35,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ( $cartas as $carta )
                     <tr>
-                        <td>1</td>
-                        <td>Dragón de Fuego</td>
-                        <td>Criatura</td>
-                        <td>Legendaria</td>
-                        <td>500</td>
-                        <td>5</td>
-                        <td>
-                            <a href="" class="btn btn-eliminar">Editar</a>
-                        </td>
+                        <td>{{$carta->id}}</td>
+                        <td>{{$carta->nombre}}</td>
+                        <td>{{$carta->habilidad}}</td>
+                        <td>{{$carta->rareza}}</td>
+                        <td>{{$carta->precio}}</td>
+                        <td>{{$carta->stock}}</td>
+                        <td><a href="" class="btn btn-eliminar">Editar</a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Esfera Mágica</td>
-                        <td>Hechizo</td>
-                        <td>Rara</td>
-                        <td>150</td>
-                        <td>10</td>
-                        <td>
-                            <a href="" class="btn btn-eliminar">Editar</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
